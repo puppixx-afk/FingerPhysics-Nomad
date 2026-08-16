@@ -1,33 +1,53 @@
-using System;
 using UnityEngine;
 using ThunderRoad;
 
-namespace FingerPhysicsNomad
+namespace NomadFingerPhysics
 {
-    public class FingerPhysics : ThunderScript
+    public class FingerPhysics : MonoBehaviour
     {
-        public static float FingerSpeed = 18f;
-        public static float RelaxSpeed = 7f;
+        private PlayerHand? hand;
 
-        public override void ScriptLoaded(ModManager.ModData modData)
+        private float thumb;
+        private float index;
+        private float middle;
+        private float ring;
+        private float pinky;
+
+        private void Awake()
         {
-            base.ScriptLoaded(modData);
+            hand = GetComponent<PlayerHand>();
 
-            Debug.Log("[FingerPhysics-Nomad] Loaded!");
+            if (hand == null)
+            {
+                Debug.LogWarning("[FingerPhysics] PlayerHand not found.");
+                return;
+            }
+
+            Debug.Log("[FingerPhysics] Hand connected!");
         }
 
-        public override void ScriptUpdate()
+        private void Update()
         {
-            base.ScriptUpdate();
+            if (hand == null || hand.controlHand == null)
+                return;
 
-            // Finger physics will be connected to the player's
-            // RagdollHand/finger bones here.
+            thumb = hand.controlHand.GetFingerCurl(Finger.Thumb);
+            index = hand.controlHand.GetFingerCurl(Finger.Index);
+            middle = hand.controlHand.GetFingerCurl(Finger.Middle);
+            ring = hand.controlHand.GetFingerCurl(Finger.Ring);
+            pinky = hand.controlHand.GetFingerCurl(Finger.Pinky);
+
             UpdateFingerPhysics();
         }
 
         private void UpdateFingerPhysics()
         {
-            // Hand and finger-bone implementation goes here.
+            // Finger values:
+            // 0 = completely open
+            // 1 = completely curled
+
+            // We'll use these values to drive the actual finger
+            // bones once the correct Nomad hand transforms are mapped.
         }
     }
 }
