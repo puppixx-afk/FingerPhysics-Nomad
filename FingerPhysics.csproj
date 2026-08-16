@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <AssemblyName>FingerPhysics</AssemblyName>
+    <RootNamespace>FingerPhysicsNomad</RootNamespace>
+    <Nullable>enable</Nullable>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="ThunderRoad">
+      <HintPath>libs/ThunderRoad.dll</HintPath>
+    </Reference>
+
+    <Reference Include="Assembly-CSharp">
+      <HintPath>libs/Assembly-CSharp.dll</HintPath>
+    </Reference>
+
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>libs/UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+
+  </ItemGroup>
+
+</Project>
